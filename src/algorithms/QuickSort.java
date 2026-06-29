@@ -1,7 +1,7 @@
 package algorithms;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
+import java.util.List;
 
 public class QuickSort {
 
@@ -12,7 +12,27 @@ public class QuickSort {
         return first;
     }
 
-    static ArrayList sort(ArrayList<Integer> arr) {
+    static boolean binarySearch(List<Integer> arr, int target){
+
+        if (arr.size() <= 1) {
+            if (arr.get(0) == target) {
+                return true;
+            }
+            return false;
+        }
+
+        int middle = arr.get(arr.size() / 2);
+
+        if (middle < target) {
+            return binarySearch(arr.subList(arr.size() / 2, arr.size()), target);
+        } else if (middle > target) {
+            return binarySearch(arr.subList(0, arr.size() / 2), target);
+        }
+
+        return true;
+    }
+
+    static ArrayList quicksort(ArrayList<Integer> arr) {
         int pivot = arr.size() / 2;
         ArrayList<Integer> left = new ArrayList<>();
         ArrayList<Integer> right = new ArrayList<>();
@@ -27,11 +47,14 @@ public class QuickSort {
                 right.add(element);
             }
         }
-        left = concat(sort(left), sort(right));
+        left = concat(quicksort(left), quicksort(right));
         return left;
     }
     static void main() {
-        ArrayList<Integer> list = new ArrayList<>();
-        System.out.println(sort(list));
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 2; i++){
+            list.add(i);
+        }
+        System.out.println(binarySearch(list, 0));
     }
 }
