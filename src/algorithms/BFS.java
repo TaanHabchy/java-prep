@@ -33,54 +33,32 @@ class Graph {
         addVertex(v);
         addVertex(w);
         myGraph.get(v).add(w);
-        myGraph.get(w).add(v);
     }
 
-    void traverse(int startNode) {
-        ArrayList<Integer> queue = new ArrayList<>();
-        ArrayList<Integer> visited = new ArrayList<>();
-        HashMap<Integer, Integer> distances = new HashMap<>();
-        int distance = 0;
-
-        queue.add(startNode);
-
-        while (!queue.isEmpty()) {
-            int node = queue.remove(0);
-            visited.add(node);
-            distance += 6;
-            for (int i = 0; i < myGraph.get(node).size(); i++) {
-                int temp = (int) myGraph.get(node).get(i);
-
-                if (visited.contains(temp)){
-                } else {
-                    queue.add(temp);
-                    visited.add(temp);
-                }
-
-            }
-            System.out.println(node);
-    }
-    }
-
+    // a cycle exists if the neighbor has been visited already, and it's not the parent
     void shortestDis(int start, int target) {
         ArrayList<Integer> queue = new ArrayList<>();
         ArrayList<Integer> visited = new ArrayList<>();
+        HashMap<Integer, Integer> parents = new HashMap<>();
 
-        queue.add(target);
+        queue.add(start);
 
         int distance = 0;
         while (!queue.isEmpty()) {
-            int node = queue.remove(0);
-            distance += 6;
+            int node = queue.removeFirst();
+            distance += 1;
             for (int i = 0; i < myGraph.get(node).size(); i++) {
                 int temp = (int) myGraph.get(node).get(i);
+                parents.put(temp, node);
 
-                if (temp == start) {
+                if (visited.contains(temp) && parents.get(temp) != temp){
+                    System.out.println("cycle!");
+                }
+                if (temp == target) {
                     System.out.println(distance + " for target " + target);
                     return;
                 }
-                if (visited.contains(temp)){
-                } else {
+                else {
                     queue.add(temp);
                     visited.add(temp);
                 }
@@ -97,6 +75,9 @@ public class BFS {
        Graph myGraph = new Graph();
        myGraph.addEdge(1,3);
        myGraph.addEdge(1,2);
+       myGraph.addEdge(2,3);
+       myGraph.addEdge(3,4);
+       myGraph.addEdge(4,5);
        myGraph.addVertex(4);
        for (Integer i : myGraph.entrySet()){
            if (i == 1) {
