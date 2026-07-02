@@ -53,8 +53,7 @@ class Graph {
 
                 if (visited.contains(temp) && parents.get(temp) != temp){
                     System.out.println("cycle!");
-                }
-                if (temp == target) {
+                } else if (temp == target) {
                     System.out.println(distance + " for target " + target);
                     return;
                 }
