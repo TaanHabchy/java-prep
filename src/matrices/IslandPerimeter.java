@@ -1,6 +1,8 @@
+package matrices;
+
 import java.util.*;
 
-class Solution {
+class IslandPerimeter {
 
     static int bfs(int[][]grid, int r, int c){
 
@@ -57,7 +59,7 @@ class Solution {
         for (int row = 0; row < length; row++){
             for (int col = 0; col < colLength; col++){
                 if (grid[row][col] == 1){
-                    return Solution.bfs(grid, row, col);
+                    return IslandPerimeter.bfs(grid, row, col);
                 }
             }
         }
@@ -65,7 +67,7 @@ class Solution {
     }
     static void main() {
         int[][] returnArr = {{0},{1}};
-        int x = Solution.islandPerimeter(returnArr);
+        int x = IslandPerimeter.islandPerimeter(returnArr);
         System.out.println(x);
     }
 }
