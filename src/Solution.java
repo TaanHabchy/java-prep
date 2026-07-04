@@ -1,71 +1,43 @@
+import structures.TreeNode;
+
 import java.util.*;
+import java.util.stream.IntStream;
 
 class Solution {
 
-    static int bfs(int[][]grid, int r, int c){
-
-        int colLength = grid[0].length;
-        int rowLength = grid.length;
-        int rv = 0;
-
-        Deque<int[]> q = new ArrayDeque<>();
-        q.add(new int[] {r,c});
-        Set<String> v = new HashSet<>();
-
-        int[][] directions = {new int[] {-1,0}, new int[] {0,1}, new int[] {1,0}, new int[] {0,-1}};
-
-        while (!q.isEmpty()){
-            // check all the neighbors of rc, if nbr is 0 add 1 to p, else add nbr to q
-
-            int[] curr = q.poll();
-            int row = curr[0];
-            int col = curr[1];
-            v.add(row+ ","+col);
-
-            if (row == 0){
-                rv++;
-            } if (row == rowLength-1){
-                rv++;
-            }
-            if (col == 0){
-                rv++;
-            }
-            if (col == colLength - 1){
-                rv++;
-            }
-
-
-            for (int[] d : directions){
-                int x = d[0] + row;
-                int y = d[1] + col;
-                if (x < rowLength && x >= 0 && y < colLength && y>=0) {
-                    if (grid[x][y] == 0) {
-                        rv++;
-                    } else if (!v.contains(x+","+y)){
-                        q.add(new int[] {x, y});
-                        v.add(x + "," + y);
-
-                    }
-                }
-            }
+    static void helper(TreeNode root, int rv, boolean left){
+        System.out.println("rv: " + rv);
+        if (root == null){
+            return;
         }
+        if (left){
+            rv += root.val;
+        }
+
+        helper(root.left, rv, true);
+        helper(root.right, rv, false);
+    }
+    static int sumOfLeftLeaves(TreeNode root) {
+        int rv = 0;
+        helper(root, rv, false);
         return rv;
     }
-    static int islandPerimeter(int[][] grid) {
-        int length = grid.length;
-        int colLength = grid[0].length;
-        for (int row = 0; row < length; row++){
-            for (int col = 0; col < colLength; col++){
-                if (grid[row][col] == 1){
-                    return Solution.bfs(grid, row, col);
-                }
-            }
-        }
-        return 0;
-    }
+
+
     static void main() {
-        int[][] returnArr = {{0},{1}};
-        int x = Solution.islandPerimeter(returnArr);
-        System.out.println(x);
+        int[] rarr = new int[] {1,2,3,4};
+
+        TreeNode root = new TreeNode(
+                3,
+                new TreeNode(9),
+                new TreeNode(
+                        20,
+                        new TreeNode(15),
+                        new TreeNode(7)
+                )
+        );
+
+        int ra = Solution.sumOfLeftLeaves(root);
+
     }
 }

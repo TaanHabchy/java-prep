@@ -9,11 +9,14 @@ class Main {
     static void main() {
         ArrayList<String> ra = new ArrayList<>();
         HashMap<Integer, Integer> majors = new HashMap<>();
+        int[] rarr = new int[] {1,2,3,4};
         int rv = 4;
-        Integer bigRv = rv;
-        majors.put(bigRv, 0);
-        majors.put(bigRv, majors.get(bigRv) + 1);
-        System.out.println(majors.get(bigRv));
+        String str = "abcd";
+        String s = "";
+        for (int i = 0; i < str.length(); i++){
+            s = str.charAt(i) + s;
+        }
+        System.out.println("i: "+ s);
 //        String number = "asdf";
 //        ra.
 //        System.out.println(number);

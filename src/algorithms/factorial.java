@@ -52,7 +52,7 @@ public class factorial {
         return rv;
     }
     static void main() {
-        int poop = clumyFactorial(4, 0);
+        int poop = factorial(4);
         System.out.println(poop);
     }
 }
