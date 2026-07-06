@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 class Main {
 
@@ -9,14 +6,17 @@ class Main {
     static void main() {
         ArrayList<String> ra = new ArrayList<>();
         HashMap<Integer, Integer> majors = new HashMap<>();
+        ArrayDeque<Integer> q = new ArrayDeque<>();
         int[] rarr = new int[] {1,2,3,4};
         int rv = 4;
         String str = "abcd";
         String s = "";
-        for (int i = 0; i < str.length(); i++){
-            s = str.charAt(i) + s;
+        for (int i = 4; i < 9; i++){
+            q.add(i);
         }
-        System.out.println("i: "+ s);
+
+        q.remove(4);
+        System.out.println("i: "+ q);
 //        String number = "asdf";
 //        ra.
 //        System.out.println(number);
