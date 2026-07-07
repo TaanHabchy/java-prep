@@ -1,58 +1,38 @@
-import structures.TreeNode;
+import java.util.HashMap;
 
-import java.util.ArrayList;
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class Solution {
-    private ArrayList<Integer> firstLeaves = new ArrayList<>();
-    private ArrayList<Integer> secondLeaves = new ArrayList<>();
 
-    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+    private HashMap<String, Integer> hash = new HashMap<>();
 
-        helper(root1, firstLeaves);
-        helper(root2, secondLeaves);
+    public int minSubArrayLen(int target, int[] nums) {
+        // want to go across the array, first in ones, then in two's
+        // once a sum >= target is found, create an array between those indexes, and return it
 
-        // compare arrays
-        if (firstLeaves.size() != secondLeaves.size()){
-            return false;
-        }
-
-        for (int i = 0; i < firstLeaves.size(); i++){
-            if (firstLeaves.get(i) != secondLeaves.get(i)){
-                return false;
+        for (int i = 0; i < nums.length; i++){ // i is how far you go
+            for (int j = 0; j < nums.length - i; j++){
+                if (subSum(j, i, nums) >= target){
+                    return i+1;
+                }
             }
         }
-        return true;
+
+        return 0;
     }
 
-    private void helper(TreeNode root, ArrayList<Integer> arr){
-        System.out.println(root.val);
-        if (root == null){
-            return;
+    private int subSum(int start, int length, int[] arr){
+        int rv = 0;
+
+        if (length == 0){
+            hash.put(start+","+length, arr[start]);
+            return arr[start];
         }
 
-        helper(root.left, arr);
+        rv = hash.get(start+","+(length-1)) + arr[start+length];
+        hash.put(start+","+length, rv);
 
-        // if left and right are null, it's a leaf, add to array
-        if (root.left == null && root.right == null){
-            arr.add(root.val);
-            return;
-        }
-
-        helper(root.right, arr);
+        // for (int i = start; i <= start + length; i++){
+        //     rv += arr[i];
+        // }
+        return rv;
     }
 }

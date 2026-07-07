@@ -7,7 +7,7 @@ class Main {
         ArrayList<String> ra = new ArrayList<>();
         HashMap<Integer, Integer> majors = new HashMap<>();
         ArrayDeque<Integer> q = new ArrayDeque<>();
-        int[] rarr = new int[] {1,2,3,4};
+        String[] rarr = new String[3]; // 2 4 1 3
         int rv = 4;
         String str = "abcd";
         String s = "";

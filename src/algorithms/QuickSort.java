@@ -5,7 +5,8 @@ import java.util.List;
 
 public class QuickSort {
 
-    static ArrayList concat(ArrayList<Integer> first, ArrayList<Integer> second){
+    static ArrayList concat(ArrayList<Integer> first, Integer pivot, ArrayList<Integer> second){
+        first.add(pivot);
         for (int i : second){
             first.add(i);
         }
@@ -32,7 +33,7 @@ public class QuickSort {
         return true;
     }
 
-    static ArrayList quicksort(ArrayList<Integer> arr) {
+    static ArrayList<Integer> quicksort(ArrayList<Integer> arr) {
         int pivot = arr.size() / 2;
         ArrayList<Integer> left = new ArrayList<>();
         ArrayList<Integer> right = new ArrayList<>();
@@ -41,20 +42,20 @@ public class QuickSort {
             return arr;
         }
         for (int element : arr) {
-            if (element <= arr.get(pivot)) {
+            if (element < arr.get(pivot)) {
                 left.add(element);
-            } else {
+            } if (element > arr.get(pivot)) {
                 right.add(element);
             }
         }
-        left = concat(quicksort(left), quicksort(right));
+        left = concat(quicksort(left), arr.get(pivot), quicksort(right));
         return left;
     }
     static void main() {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 2; i++){
-            list.add(i);
-        }
-        System.out.println(binarySearch(list, 0));
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(3);
+        list.add(2);
+        System.out.println(quicksort(list));
     }
 }
