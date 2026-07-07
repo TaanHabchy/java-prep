@@ -1,4 +1,4 @@
-package structures;
+package algorithms;
 
 import java.util.ArrayDeque;
 import java.util.HashMap;
