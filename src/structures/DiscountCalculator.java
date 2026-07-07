@@ -2,7 +2,7 @@ package structures;
 
 // OCP - Open/Closed Principle: Software entities should be open for extension but closed for modification
 abstract class Discount { // abstract because no method body instantiation
-//    abstract double calculate(double amount);
+    abstract double calculate(double amount);
 }
 
 class RegularDiscount extends Discount {
