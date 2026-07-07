@@ -1,0 +1,17 @@
+SOLID PRINCIPLES
+1. Single Responsibility:  Every class should have only one reason to change.
+    Every class should have a single responsibility or single job or single purpose.
+
+2. Open-Closed Principle: Classes should be open for extension, but closed for modification.
+
+3. Liskov Substituation Principle: Subtypes should be able to be subbed for their parents, without altering the program
+
+4. Interface Segregation Principle: Clients should not be forced to depend on interfaces that they do not use.
+    Split interfaces so that they have only the bare necessity of functionality
+
+5. Dependency Inversion Principle: High-level classes shouldn't depend on low-level classes. Both should depend on abstractions. Abstractions shouldn't depend on details.
+                                   Details should depend on abstractions.
+    High Level Class: Class that ezecutes an action with a tool.
+    Low Level Class: The tool that is needed to execute the action.
+    Abstraction: Represents an interface that connects the two classes.
+    Details: How the tool works.
