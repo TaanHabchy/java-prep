@@ -101,17 +101,17 @@ public class PaymentProcessing {
         System.out.println("The store has $" + this.cash);
     }
 
-    void showStock(PackableItem item) {
+    void showStock(Item item) {
         int total = this.stock.get(item.getName());
         System.out.println("You have " + total + " " + item.getName() +"s");
     }
 
-    int checkStock(PackableItem item) {
+    int checkStock(Item item) {
         int total = this.stock.get(item.getName());
         return total;
     }
 
-    void tryPayment(PackableItem item){
+    void tryPayment(Item item){
         if (checkStock(item) < 0) {
             System.out.println("Out of stock sorry");
             return;
@@ -126,7 +126,7 @@ public class PaymentProcessing {
     static void main() {
         Card card = new Card(500);
         PaymentProcessing process = new PaymentProcessing(card);
-        PackableItem mac = new PackableItem("Mac", 300);
+        Item mac = new Item("Mac", 300);
         stock.put(mac.getName(), 2);
 
         process.showStock(mac);
