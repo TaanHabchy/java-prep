@@ -1,4 +1,4 @@
-package structures;
+package structures.solid;
 
 // Dependency Inversion Principle (DIP) - High Level Modules do not depend on low level modules.
 //                                        Both should depend on abstractions. Abstractions shouldn't

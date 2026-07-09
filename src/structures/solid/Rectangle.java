@@ -1,6 +1,6 @@
-package structures;
+package structures.solid;
 
-// Liskov Substitution Principle (LSP) - Subtypes must by substitutablle for their
+// Liskov Substitution Principle (LSP) - Subtypes must by substitutable for their
 // base types without altering the correctness of the program
 
 interface Shape {

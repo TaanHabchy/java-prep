@@ -1,4 +1,4 @@
-package structures;
+package structures.solid;
 
 // OCP - Open/Closed Principle: Software entities should be open for extension but closed for modification
 abstract class Discount { // abstract because no method body instantiation
